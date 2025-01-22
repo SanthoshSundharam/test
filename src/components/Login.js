@@ -2,35 +2,16 @@ import React, { useState } from "react";
 import { data, Link } from "react-router-dom";
 
 function Login() {
-  const handleSubmit = () => {
 
-    console.log(email, password)
-    fetch('https://dummyjson.com/auth/login', {
-      method : "POST",
-      headers : {
-        "Content-Type" : "application/json",
-        Accept : "application/json"
-      },
-      body : JSON.stringify({
-        email,
-        password,
-        expiresInMins : 30,
-      }),
-      
-    }).then((data)=> {
-      return data.json()
-    })
-    .then((data)=>{
-      console.log(data)
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
+  const[username, setUserName] = useState("")
+  const[password, setPassword] = useState("")
+
+  const storeUsername = (e)=>{
+    setUserName(e.target.value)
   }
-
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  
+  const storePassword = (e)=>{
+    setPassword(e.target.value)
+  }
 
   return (
     <div className="form">
@@ -47,20 +28,19 @@ function Login() {
         <h2 className="login-title">Login Page</h2>
         <div className="email">
           <label htmlFor="email">Email</label>
-          <input type="email" placeholder="Enter your email" required value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
+          <input type="email" placeholder="Enter your email" required onChange={storeUsername}/>
         </div>
         <div className="password">
           <label htmlFor="password">Password</label>
           <input type="text"
-          placeholder="Enter your password" 
-          required onChange={(e)=>{setPassword(e.target.value)}}/>
+          placeholder="Enter your password" required onChange={storePassword}/>
         </div>
         <div className="remember-me">
           <input type="checkbox" id="remember" />
           <label htmlFor="remember">Remember Me</label>
         </div>
         <div className="button-container">
-          <button onClick={handleSubmit}>Login</button>
+          <button onClick={()=>console.log(username,password)}>Login</button>
         </div>
         <div className="new-user">
           <h4>Are you a New User? <Link to="/register">Register here</Link></h4>

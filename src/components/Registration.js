@@ -38,7 +38,7 @@ function Registration() {
           </div>
           <div className="new-user">
             <h4>Already have an account? <span>
-            <Link to="/">Login here</Link></span></h4>
+            <Link to="/login">Login here</Link></span></h4>
           </div>
         </div>
         <div className="picture">
